@@ -16,7 +16,15 @@ dotenv.config();
 const app = express();
 
 // 4. Add middleware
-app.use(cors());
+const allowedOrigin = process.env.CLIENT_ORIGIN || "http://localhost:3000";
+
+app.use(
+  cors({
+    origin: allowedOrigin,
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 // mount the route user auth API
 app.use("/api/auth", authRoutes);
