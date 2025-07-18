@@ -1,0 +1,45 @@
+.react-calendar-heatmap rect {
+    width: 10px;
+    height: 10px;
+    rx: 2;
+    ry: 2;
+}
+
+.react-calendar-heatmap .mood-happy {
+    fill: #4caf50;
+}
+
+.react-calendar-heatmap .mood-neutral {
+    fill: #ff9800;
+}
+
+.react-calendar-heatmap .mood-sad {
+    fill: #f44336;
+}
+
+.react-calendar-heatmap .color-empty {
+    fill: #eee;
+}
+
+/* CalendarHeatmap.css */
+.color-empty {
+    fill: #eee;
+}
+
+.mood-happy {
+    fill: #66bb6a;
+}
+
+.mood-neutral {
+    fill: #ffa726;
+}
+
+.mood-sad {
+    fill: #ef5350;
+}
+
+.react-calendar-heatmap text {
+    font-size: 9px;
+    fill: #555;
+}
+
