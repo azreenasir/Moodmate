@@ -13,7 +13,7 @@ const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID!;
 const audience = process.env.REACT_APP_AUTH0_AUDIENCE!;
 const apiUrl = process.env.REACT_APP_API_URL!;
 
-if (!domain || !clientId || !apiUrl) {
+if (!domain || !clientId || !audience || !apiUrl) {
   throw new Error("Missing Auth0 environment variables");
 }
 
