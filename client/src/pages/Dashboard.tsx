@@ -67,7 +67,7 @@ const Dashboard: React.FC = () => {
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [entryToDelete, setEntryToDelete] = useState<string | null>(null);
 
-  const apiUrl = process.env.REACT_APP_API_URL!;
+  const audience = process.env.REACT_APP_AUTH0_AUDIENCE!;
 
   const moodEmojiMap = {
     happy: '😊',
@@ -90,7 +90,7 @@ const Dashboard: React.FC = () => {
     const fetchEntries = async () => {
       try {
         const token = await getAccessTokenSilently({
-        audience: apiUrl,
+        audience: audience,
       } as any);
       // console.log("🔐 Getting token...");
       // console.log("🔐 Access Token:", token);
@@ -115,7 +115,7 @@ const Dashboard: React.FC = () => {
     };
 
     fetchEntries();
-  }, [getAccessTokenSilently,apiUrl]);
+  }, [getAccessTokenSilently,audience]);
 
 
   const handleEdit = (entry: Entry) => {
@@ -128,7 +128,7 @@ const Dashboard: React.FC = () => {
   const handleUpdate = async () => {
     if (!editEntry) return;
     try {
-      const token = await getAccessTokenSilently({ audience: apiUrl } as any);
+      const token = await getAccessTokenSilently({ audience: audience } as any);
       await axios.put(`/journal/${editEntry._id}`, {
         text: editText,
         selectedMood: editMood,
@@ -175,7 +175,7 @@ const Dashboard: React.FC = () => {
 
   try {
     const token = await getAccessTokenSilently({
-      audience: apiUrl,
+      audience: audience,
     } as any);
 
     await axios.delete(`/journal/${entryToDelete}`, {

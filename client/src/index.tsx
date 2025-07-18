@@ -10,6 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN!;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID!;
+const audience = process.env.REACT_APP_AUTH0_AUDIENCE!;
 const apiUrl = process.env.REACT_APP_API_URL!;
 
 if (!domain || !clientId || !apiUrl) {
@@ -27,7 +28,7 @@ root.render(
         clientId={clientId}
         authorizationParams={{
           redirect_uri: window.location.origin + '/dashboard',
-          audience: apiUrl,
+          audience: audience,
           scope: 'openid profile email offline_access'
         }}
         useRefreshTokens={true}

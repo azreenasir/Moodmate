@@ -31,7 +31,7 @@ const AddJournal: React.FC = () => {
   const [successMsg, setSuccessMsg] = useState('');
   const maxChars = 300;
 
-  const apiUrl = process.env.REACT_APP_API_URL!;
+  const audience = process.env.REACT_APP_AUTH0_AUDIENCE!;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ const AddJournal: React.FC = () => {
 
     try {
       const accessToken = await getAccessTokenSilently({
-        audience: apiUrl,
+        audience: audience,
       } as any);
 
       await axios.post(

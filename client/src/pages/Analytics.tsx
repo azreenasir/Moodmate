@@ -33,7 +33,7 @@ interface ChartData {
   neutral: number;
 }
 
-const apiUrl = process.env.REACT_APP_API_URL!;
+const audience = process.env.REACT_APP_AUTH0_AUDIENCE!;
 
 const Analytics: React.FC = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -66,7 +66,7 @@ const Analytics: React.FC = () => {
     const fetchData = async () => {
       try {
         const token = await getAccessTokenSilently({
-          audience: apiUrl,
+          audience: audience,
         } as any); // cast because Auth0 typings don’t include `audience`
         const response = await axios.get('/journal', {
           headers: { Authorization: `Bearer ${token}` },
@@ -100,7 +100,7 @@ const Analytics: React.FC = () => {
         )}
 
         {!loading && !error && data.length > 0 && (
-         <Box
+          <Box
             sx={{
               overflowX: isMobile ? 'auto' : 'visible',
               display: 'flex', // important to enable centering
