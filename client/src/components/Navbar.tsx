@@ -66,6 +66,11 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Menu */}
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            {isAuthenticated && (
+              <IconButton onClick={toggleTheme} color="inherit">
+                {mode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+              </IconButton>
+            )}
             <IconButton onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
             </IconButton>

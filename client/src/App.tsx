@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Analytics from './pages/Analytics';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Box, CircularProgress, Typography } from '@mui/material';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -36,21 +37,28 @@ const App: React.FC = () => {
   }
 
   return (
-    <>
+    <Box
+      display="flex"
+      flexDirection="column"
+      minHeight="100vh"
+    >
       {isAuthenticated && <Navbar />}
-      <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/dashboard"
-          element={
-            isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />
-          }
-        />
-        <Route path="/add-journal" element={ isAuthenticated ? <AddJournal /> : <Navigate to="/login" replace/>} />
-        <Route path="/analytics" element={<Analytics />} />
-      </Routes>
-    </>
+      <Box flexGrow={1}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={
+              isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />
+            }
+          />
+          <Route path="/add-journal" element={ isAuthenticated ? <AddJournal /> : <Navigate to="/login" replace/>} />
+          <Route path="/analytics" element={<Analytics />} />
+        </Routes>
+      </Box>
+      <Footer/>
+    </Box>
   );
 };
 
